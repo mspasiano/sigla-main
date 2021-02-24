@@ -31,8 +31,6 @@ jobs:
   docs-deploy:
     docker:
       - image: node:8.10.0
-    requires:
-      - docs-build
     filters:
       branches:
         only: master      
