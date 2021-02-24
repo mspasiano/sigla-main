@@ -15,7 +15,7 @@ jobs:
           name: Install dependencies
           command: |            
             apt-get update 
-            apt-get install --no-install-recommends -y latex-xcolor texlive-base texlive-latex-base texlive-latex-recommended texlive-fonts-recommended 
+            apt-get install --no-install-recommends -y texlive-base texlive-latex-base texlive-latex-recommended texlive-fonts-recommended 
               texlive-fonts-extra texlive-latex-extra texlive-formats-extra texlive-bibtex-extra texlive-humanities 
               texlive-lang-italian texinfo texlive-science latexmk 
             apt-get autoremove
