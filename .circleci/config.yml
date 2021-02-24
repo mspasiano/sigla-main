@@ -1,0 +1,35 @@
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: |
+            pip install -r requirements.txt 
+            make html
+            make latexpdf
+            cp _build/latex/*.pdf _build/html/
+            make epub
+            cp _build/epub/*.epub _build/html/
+            touch _build/html/.nojekyll
+
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "marco.spasiano@gmail.com"
+            git config user.name "marco.spasiano"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist _build/html                 
+
