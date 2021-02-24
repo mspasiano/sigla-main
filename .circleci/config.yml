@@ -11,10 +11,16 @@ jobs:
 
     steps:
       - checkout
-
       - run:
           name: Install dependencies
-          command: |
+          command: |            
+            apt get latex-xcolor texlive-base texlive-latex-base texlive-latex-recommended texlive-fonts-recommended 
+              texlive-fonts-extra texlive-latex-extra texlive-formats-extra texlive-bibtex-extra texlive-humanities 
+              texlive-lang-italian texinfo texlive-science latexmk
+              
+      - run:
+          name: Compile SPHINX
+          command: |            
             pip install -r requirements.txt 
             make html
             make latexpdf
