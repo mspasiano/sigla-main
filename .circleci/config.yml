@@ -3,8 +3,10 @@ version: 2
 jobs:
   docs-build:
       docker:
-        # specify the version you desire here
         - image: python:3.7
+      filters:
+        branches:
+          only: master      
 
       steps:
         - checkout          
@@ -29,8 +31,12 @@ jobs:
   docs-deploy:
     docker:
       - image: node:8.10.0
+    requires:
+      - docs-build
+    filters:
+      branches:
+        only: master      
     steps:
-      - checkout
       - attach_workspace:
           at: _build
       - run:
